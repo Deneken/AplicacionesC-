@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionHDEFactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+    </Key>
+    <Property Name="Id_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Clave" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ConfirmacionClave" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreRol" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tienda">
+    <Key>
+      <PropertyRef Name="IdTienda" />
+    </Key>
+    <Property Name="IdTienda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comuna" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuariosTienda">
+    <Key>
+      <PropertyRef Name="IdUsuarioTienda" />
+    </Key>
+    <Property Name="IdUsuarioTienda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cliente" Type="int" Nullable="false" />
+    <Property Name="IdTienda" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Clientes__IdRol__4BAC3F29">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Clientes">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsuariosT__Id_Cl__5070F446">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="UsuariosTienda" Type="Self.UsuariosTienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="UsuariosTienda">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsuariosT__IdTie__5165187F">
+    <End Role="Tienda" Type="Self.Tienda" Multiplicity="1" />
+    <End Role="UsuariosTienda" Type="Self.UsuariosTienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tienda">
+        <PropertyRef Name="IdTienda" />
+      </Principal>
+      <Dependent Role="UsuariosTienda">
+        <PropertyRef Name="IdTienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionHDEFactoryModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tienda" EntityType="Self.Tienda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuariosTienda" EntityType="Self.UsuariosTienda" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Clientes__IdRol__4BAC3F29" Association="Self.FK__Clientes__IdRol__4BAC3F29">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Clientes" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsuariosT__Id_Cl__5070F446" Association="Self.FK__UsuariosT__Id_Cl__5070F446">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="UsuariosTienda" EntitySet="UsuariosTienda" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsuariosT__IdTie__5165187F" Association="Self.FK__UsuariosT__IdTie__5165187F">
+      <End Role="Tienda" EntitySet="Tienda" />
+      <End Role="UsuariosTienda" EntitySet="UsuariosTienda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

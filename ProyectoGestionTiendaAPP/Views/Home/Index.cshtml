@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ELECTRO PC FACTORY</h1>
+        <p class="lead">Tienda Electronica.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Seguir leyendo &raquo;</a></p>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">PC</h2>
+            Aca encontraras diferentes tipos de PC podras verlo al Registrar una cuenta
+
+        </section>
+
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">CELULARES</h2>
+           
+            
+        </section>
+
+        <section class="col-md-4" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">NOTEBOOK</h2>
+             
+        </section>
+    </div>
+</main>
+
+
+@*Carrusel*@
+
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/c1.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/c2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/c3.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

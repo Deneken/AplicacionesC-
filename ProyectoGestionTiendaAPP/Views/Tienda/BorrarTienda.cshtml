@@ -1,0 +1,65 @@
+﻿@model ProyectoGestionTiendaAPP.Models.Tienda
+
+@{
+    ViewBag.Title = "BorrarTienda";
+}
+
+<h2>Borrar Tienda</h2>
+
+<h6>¿Estas seguro de eliminar la tienda?</h6>
+<div>
+    <h4>Tiendas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comuna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comuna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-warning" /> |
+            @Html.ActionLink("Volver a la Lista", "ListaTienda")
+        </div>
+    }
+</div>

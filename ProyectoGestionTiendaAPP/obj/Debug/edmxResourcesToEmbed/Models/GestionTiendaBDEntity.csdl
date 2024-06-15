@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionHDEFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+    </Key>
+    <Property Name="Id_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfirmacionClave" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Clientes__IdRol__4BAC3F29" FromRole="Clientes" ToRole="Roles" />
+    <NavigationProperty Name="UsuariosTienda" Relationship="Self.FK__UsuariosT__Id_Cl__5070F446" FromRole="Clientes" ToRole="UsuariosTienda" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreRol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK__Clientes__IdRol__4BAC3F29" FromRole="Roles" ToRole="Clientes" />
+  </EntityType>
+  <EntityType Name="Tienda">
+    <Key>
+      <PropertyRef Name="IdTienda" />
+    </Key>
+    <Property Name="IdTienda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comuna" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UsuariosTienda" Relationship="Self.FK__UsuariosT__IdTie__5165187F" FromRole="Tienda" ToRole="UsuariosTienda" />
+  </EntityType>
+  <EntityType Name="UsuariosTienda">
+    <Key>
+      <PropertyRef Name="IdUsuarioTienda" />
+    </Key>
+    <Property Name="IdUsuarioTienda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
+    <Property Name="IdTienda" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK__UsuariosT__Id_Cl__5070F446" FromRole="UsuariosTienda" ToRole="Clientes" />
+    <NavigationProperty Name="Tienda" Relationship="Self.FK__UsuariosT__IdTie__5165187F" FromRole="UsuariosTienda" ToRole="Tienda" />
+  </EntityType>
+  <Association Name="FK__Clientes__IdRol__4BAC3F29">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Clientes">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsuariosT__Id_Cl__5070F446">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="UsuariosTienda" Type="Self.UsuariosTienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="UsuariosTienda">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsuariosT__IdTie__5165187F">
+    <End Role="Tienda" Type="Self.Tienda" Multiplicity="1" />
+    <End Role="UsuariosTienda" Type="Self.UsuariosTienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tienda">
+        <PropertyRef Name="IdTienda" />
+      </Principal>
+      <Dependent Role="UsuariosTienda">
+        <PropertyRef Name="IdTienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionHDEFactoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Tienda" EntityType="Self.Tienda" />
+    <EntitySet Name="UsuariosTienda" EntityType="Self.UsuariosTienda" />
+    <AssociationSet Name="FK__Clientes__IdRol__4BAC3F29" Association="Self.FK__Clientes__IdRol__4BAC3F29">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Clientes" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsuariosT__Id_Cl__5070F446" Association="Self.FK__UsuariosT__Id_Cl__5070F446">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="UsuariosTienda" EntitySet="UsuariosTienda" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsuariosT__IdTie__5165187F" Association="Self.FK__UsuariosT__IdTie__5165187F">
+      <End Role="Tienda" EntitySet="Tienda" />
+      <End Role="UsuariosTienda" EntitySet="UsuariosTienda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

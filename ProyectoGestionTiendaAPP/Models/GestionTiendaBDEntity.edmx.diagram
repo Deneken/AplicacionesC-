@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eaa3c60d3ede4550b65ff20cccadad6e" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionHDEFactoryModel.Clientes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionHDEFactoryModel.Roles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionHDEFactoryModel.Tienda" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionHDEFactoryModel.UsuariosTienda" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="GestionHDEFactoryModel.FK__Clientes__IdRol__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionHDEFactoryModel.FK__UsuariosT__Id_Cl__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionHDEFactoryModel.FK__UsuariosT__IdTie__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
